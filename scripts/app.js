@@ -89,6 +89,7 @@
   };
 
   app.reloadPage = function(reload){
+      localStorage.clear();
       serviceWorker.clear();
       window.location.reload(reload);
   }
