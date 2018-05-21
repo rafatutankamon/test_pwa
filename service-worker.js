@@ -1,23 +1,23 @@
 var dataCacheName = 'weatherData-v1';
 var cacheName = 'weatherPWA-step-6-1';
 var filesToCache = [
-   'test_pwa/',
-   'test_pwa/index.html',
-   'test_pwa/scripts/app.js',
-   'test_pwa/styles/inline.css',
-   'test_pwa/images/clear.png',
-   'test_pwa/images/cloudy-scattered-showers.png',
-   'test_pwa/images/fog.png',
-   'test_pwa/images/cloudy.png',
-   'test_pwa/images/ic_refresh_white_24px.svg',
-   'test_pwa/images/ic_add_white_24px.svg',
-   'test_pwa/images/partly-cloudy.png',
-   'test_pwa/images/rain.png',
-   'test_pwa/images/scattered-showers.png',
-   'test_pwa/images/sleet.png',
-   'test_pwa/images/snow.png',
-   'test_pwa/images/thunderstorm.png',
-   'test_pwa/images/wind.png'
+   'https://rafatutankamon.github.io/test_pwa/',
+   'https://rafatutankamon.github.io/test_pwa/index.html',
+   'https://rafatutankamon.github.io/test_pwa/scripts/app.js',
+   'https://rafatutankamon.github.io/test_pwa/styles/inline.css',
+   'https://rafatutankamon.github.io/test_pwa/images/clear.png',
+   'https://rafatutankamon.github.io/test_pwa/images/cloudy-scattered-showers.png',
+   'https://rafatutankamon.github.io/test_pwa/images/fog.png',
+   'https://rafatutankamon.github.io/test_pwa/images/cloudy.png',
+   'https://rafatutankamon.github.io/test_pwa/images/ic_refresh_white_24px.svg',
+   'https://rafatutankamon.github.io/test_pwa/images/ic_add_white_24px.svg',
+   'https://rafatutankamon.github.io/test_pwa/images/partly-cloudy.png',
+   'https://rafatutankamon.github.io/test_pwa/images/rain.png',
+   'https://rafatutankamon.github.io/test_pwa/images/scattered-showers.png',
+   'https://rafatutankamon.github.io/test_pwa/images/sleet.png',
+   'https://rafatutankamon.github.io/test_pwa/images/snow.png',
+   'https://rafatutankamon.github.io/test_pwa/images/thunderstorm.png',
+   'https://rafatutankamon.github.io/test_pwa/images/wind.png'
  ];
 
 
