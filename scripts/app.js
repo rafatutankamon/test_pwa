@@ -89,7 +89,7 @@
   };
 
   app.reloadPage = function(reload){
-      Cache.delete();
+      serviceWorker.clear();
       window.location.reload(reload);
   }
 
