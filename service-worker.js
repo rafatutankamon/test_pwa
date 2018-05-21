@@ -46,6 +46,22 @@ self.addEventListener('activate', function(e) {
    return self.clients.claim();
  });
 
+ self.addEventListener('clear', function(event) {
+   event.waitUntil(
+     caches.keys().then(function(cacheNames) {
+       return Promise.all(
+         cacheNames.filter(function(cacheName) {
+           // Return true if you want to remove this cache,
+           // but remember that caches are shared across
+           // the whole origin
+         }).map(function(cacheName) {
+           return caches.delete(cacheName);
+         })
+       );
+     })
+   );
+ });
+
  self.addEventListener('fetch', function(e) {
    console.log('[Service Worker] Fetch', e.request.url);
    var dataUrl = 'https://query.yahooapis.com/v1/public/yql';

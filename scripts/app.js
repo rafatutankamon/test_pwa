@@ -44,6 +44,11 @@
     app.toggleAddDialog(true);
   });
 
+  document.getElementById('butReload').addEventListener('click', function() {
+   // Reload Page
+   app.reloadPage(true);
+ });
+
   document.getElementById('butAddCity').addEventListener('click', function() {   
       // Add the newly selected city
       var select = document.getElementById('selectCityToAdd');
@@ -82,6 +87,10 @@
       app.addDialog.classList.remove('dialog-container--visible');
     }
   };
+
+  app.reloadPage = function(reload){
+      window.location.reload(reload);
+  }
 
   // Updates a weather card with the latest weather forecast. If the card
   // doesn't already exist, it's cloned from the template.
