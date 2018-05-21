@@ -89,6 +89,7 @@
   };
 
   app.reloadPage = function(reload){
+      Cache.delete();
       window.location.reload(reload);
   }
 
