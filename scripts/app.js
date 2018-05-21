@@ -90,7 +90,7 @@
 
   app.reloadPage = function(reload){
       localStorage.clear();
-      serviceWorker.clear();
+      navigator.serviceWorker.dispatchEvent('clear');
       window.location.reload(reload);
   }
 
