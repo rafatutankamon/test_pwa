@@ -24,7 +24,7 @@
     cardTemplate: document.querySelector('.cardTemplate'),
     container: document.querySelector('.main'),
     addDialog: document.querySelector('.dialog-container'),
-    daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    daysOfWeek: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom']
   };
 
 
@@ -44,19 +44,22 @@
     app.toggleAddDialog(true);
   });
 
-  document.getElementById('butAddCity').addEventListener('click', function() {
-    // Add the newly selected city
-    var select = document.getElementById('selectCityToAdd');
-    var selected = select.options[select.selectedIndex];
-    var key = selected.value;
-    var label = selected.textContent;
-    if (!app.selectedCities) {
-      app.selectedCities = [];
-    }
-    app.getForecast(key, label);
-    app.selectedCities.push({key: key, label: label});
-    app.saveSelectedCities();
-    app.toggleAddDialog(false);
+  document.getElementById('butAddCity').addEventListener('click', function() {   
+      // Add the newly selected city
+      var select = document.getElementById('selectCityToAdd');
+      //alert(JSON.stringify(select));
+      var selected = select.options[select.selectedIndex];
+      var key = selected.value;
+      var label = selected.textContent;
+      //alert(label);
+      if (!app.selectedCities) {
+        app.selectedCities = [];
+      }
+      app.getForecast(key, label);
+      app.selectedCities.push({key: key, label: label});
+      app.saveSelectedCities();
+      app.toggleAddDialog(false);  
+  
   });
 
   document.getElementById('butAddCancel').addEventListener('click', function() {
@@ -118,7 +121,7 @@
     card.querySelector('.date').textContent = current.date;
     card.querySelector('.current .icon').classList.add(app.getIconClass(current.code));
     card.querySelector('.current .temperature .value').textContent =
-      Math.round(current.temp);
+      Math.round((current.temp - 32)/ 1.8);//Converting Fahrenheit to Celsius
     card.querySelector('.current .sunrise').textContent = sunrise;
     card.querySelector('.current .sunset').textContent = sunset;
     card.querySelector('.current .humidity').textContent =
@@ -167,8 +170,9 @@
   app.getForecast = function(key, label) {
     var statement = 'select * from weather.forecast where woeid=' + key;
     var url = 'https://query.yahooapis.com/v1/public/yql?format=json&q=' +
-        statement;
-    // TODO add cache logic here
+        statement+'&u=c';
+    console.log(url);
+        // TODO add cache logic here   
     if ('caches' in window) {
       /*
        * Check if the service worker has already cached this city's weather
@@ -189,8 +193,8 @@
     }
     // Fetch the latest data.
     var request = new XMLHttpRequest();
-    request.onreadystatechange = function() {
-      if (request.readyState === XMLHttpRequest.DONE) {
+    request.onreadystatechange = function() {      
+      if (request.readyState === XMLHttpRequest.DONE) {         
         if (request.status === 200) {
           var response = JSON.parse(request.response);
           var results = response.query.results;
@@ -205,6 +209,7 @@
       }
     };
     request.open('GET', url);
+    
     request.send();
   };
 
@@ -219,9 +224,9 @@
   // TODO add saveSelectedCities function here
   // Save list of cities to localStorage.
   app.saveSelectedCities = function() {
-    var selectedCities = JSON.stringify(app.selectedCities);
-    localStorage.selectedCities = selectedCities;
-  };
+   var selectedCities = JSON.stringify(app.selectedCities);
+   localStorage.selectedCities = selectedCities;
+ };
 
   app.getIconClass = function(weatherCode) {
     // Weather codes: https://developer.yahoo.com/weather/documentation.html#codes
@@ -328,20 +333,20 @@
     }
   };
   // TODO uncomment line below to test app with fake data
-  // app.updateForecastCard(initialWeatherForecast);
+  //app.updateForecastCard(initialWeatherForecast);
 
+  // TODO add startup code here
   /************************************************************************
    *
    * Code required to start the app
    *
-   * NOTE: To simplify this codelab, we've used localStorage.
+   * OBSERVAÇÃO: To simplify this codelab, we've used localStorage.
    *   localStorage is a synchronous API and has serious performance
    *   implications. It should not be used in production applications!
    *   Instead, check out IDB (https://www.npmjs.com/package/idb) or
    *   SimpleDB (https://gist.github.com/inexorabletash/c8069c042b734519680c)
    ************************************************************************/
 
-  // TODO add startup code here
   app.selectedCities = localStorage.selectedCities;
   if (app.selectedCities) {
     app.selectedCities = JSON.parse(app.selectedCities);
@@ -363,8 +368,9 @@
 
   // TODO add service worker code here
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-             .register('./service-worker.js')
-             .then(function() { console.log('Service Worker Registered'); });
+   navigator.serviceWorker
+            .register('service-worker.js')
+            .then(function() { console.log('Service Worker Registered'); });
   }
+  
 })();
