@@ -47,7 +47,8 @@
   document.getElementById('butReload').addEventListener('click', function() {
    // Reload Page
    //app.reloadPage(true);
-      if(deferredPrompt !== undefined) {
+      window.dispatchEvent('beforeinstallprompt');
+      /*if(deferredPrompt !== undefined) {
          // The user has had a postive interaction with our app and Chrome
          // has tried to prompt previously, so let's show the prompt.
          deferredPrompt.prompt();
@@ -67,7 +68,7 @@
             // We no longer need the prompt.  Clear it up.
             deferredPrompt = null;
          });
-      }
+      }*/
    });
  
 
