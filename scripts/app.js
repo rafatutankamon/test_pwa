@@ -44,10 +44,10 @@
     app.toggleAddDialog(true);
   });
 
-  document.getElementById('butReload').addEventListener('click', function() {
+  //document.getElementById('butReload').addEventListener('click', function() {
    // Reload Page
    //app.reloadPage(true);
-      window.dispatchEvent();
+     // window.dispatchEvent();
       /*if(deferredPrompt !== undefined) {
          // The user has had a postive interaction with our app and Chrome
          // has tried to prompt previously, so let's show the prompt.
@@ -69,7 +69,7 @@
             deferredPrompt = null;
          });
       }*/
-   });
+  // });
  
 
   document.getElementById('butAddCity').addEventListener('click', function() {   
