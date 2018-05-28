@@ -44,11 +44,11 @@
     app.toggleAddDialog(true);
   });
 
-  //document.getElementById('butReload').addEventListener('click', function() {
+  document.getElementById('butReload').addEventListener('click', function() {
    // Reload Page
    //app.reloadPage(true);
-     // window.dispatchEvent();
-      /*if(deferredPrompt !== undefined) {
+     
+      if(deferredPrompt !== undefined) {
          // The user has had a postive interaction with our app and Chrome
          // has tried to prompt previously, so let's show the prompt.
          deferredPrompt.prompt();
@@ -68,8 +68,9 @@
             // We no longer need the prompt.  Clear it up.
             deferredPrompt = null;
          });
-      }*/
-  // });
+      }else
+         console.info("não registrou o evento.");
+   });
  
 
   document.getElementById('butAddCity').addEventListener('click', function() {   
@@ -413,13 +414,7 @@
       console.log('beforeinstallprompt Event fired');
       e.preventDefault();
 
-      deferredPrompt = e;
-
-      // Shows prompt after a user clicks an "install" button
-      document.getElementById('butReload').addEventListener("click", function(e) {
-         e.prompt();
-      });
-      
+      deferredPrompt = e;            
       document.getElementById('butReload').hidden = false; // Make button operable
       //return false;
    });   
