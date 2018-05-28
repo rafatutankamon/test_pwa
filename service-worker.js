@@ -4,6 +4,7 @@ var filesToCache = [
    'https://rafatutankamon.github.io/test_pwa/',
    'https://rafatutankamon.github.io/test_pwa/index.html',
    'https://rafatutankamon.github.io/test_pwa/scripts/app.js',
+   'https://rafatutankamon.github.io/test_pwa/favicon.ico',
    'https://rafatutankamon.github.io/test_pwa/styles/inline.css',
    'https://rafatutankamon.github.io/test_pwa/images/clear.png',
    'https://rafatutankamon.github.io/test_pwa/images/cloudy-scattered-showers.png',
