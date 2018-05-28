@@ -15,7 +15,7 @@
 
 (function() {
   'use strict';
-
+  var deferredPrompt;
   var app = {
     isLoading: true,
     visibleCards: {},
@@ -46,8 +46,30 @@
 
   document.getElementById('butReload').addEventListener('click', function() {
    // Reload Page
-   app.reloadPage(true);
- });
+   //app.reloadPage(true);
+      if(deferredPrompt !== undefined) {
+         // The user has had a postive interaction with our app and Chrome
+         // has tried to prompt previously, so let's show the prompt.
+         deferredPrompt.prompt();
+   
+         // Follow what the user has done with the prompt.
+         deferredPrompt.userChoice.then(function(choiceResult) {
+   
+            console.log(choiceResult.outcome);
+   
+            if(choiceResult.outcome == 'dismissed') {
+               console.log('User cancelled home screen install');
+            }
+            else {
+               console.log('User added to home screen');
+            }
+   
+            // We no longer need the prompt.  Clear it up.
+            deferredPrompt = null;
+         });
+      }
+   });
+ 
 
   document.getElementById('butAddCity').addEventListener('click', function() {   
       // Add the newly selected city
@@ -383,5 +405,16 @@
             .register('service-worker.js')
             .then(function() { console.log('Service Worker Registered'); });
   }
+
   
+
+   window.addEventListener('beforeinstallprompt', function(e) {
+      console.log('beforeinstallprompt Event fired');
+      e.preventDefault();
+
+      // Stash the event so it can be triggered later.
+      deferredPrompt = e;
+
+      return false;
+   });   
 })();
