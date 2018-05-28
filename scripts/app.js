@@ -26,7 +26,7 @@
     addDialog: document.querySelector('.dialog-container'),
     daysOfWeek: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom']
   };
-
+  document.getElementById('butReload').hidden = true;
 
   /*****************************************************************************
    *
@@ -47,7 +47,7 @@
   document.getElementById('butReload').addEventListener('click', function() {
    // Reload Page
    //app.reloadPage(true);
-      window.dispatchEvent('beforeinstallprompt');
+      window.dispatchEvent();
       /*if(deferredPrompt !== undefined) {
          // The user has had a postive interaction with our app and Chrome
          // has tried to prompt previously, so let's show the prompt.
@@ -414,8 +414,12 @@
       e.preventDefault();
 
       // Stash the event so it can be triggered later.
-      deferredPrompt = e;
-
+        // Shows prompt after a user clicks an "install" button
+      document.getElementById('butReload').addEventListener("click", function(e) {
+         e.prompt();
+      });
+      
+      document.getElementById('butReload').hidden = false; // Make button operable
       return false;
    });   
 })();
