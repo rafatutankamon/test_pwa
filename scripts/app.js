@@ -413,13 +413,14 @@
       console.log('beforeinstallprompt Event fired');
       e.preventDefault();
 
-      // Stash the event so it can be triggered later.
-        // Shows prompt after a user clicks an "install" button
+      deferredPrompt = e;
+
+      // Shows prompt after a user clicks an "install" button
       document.getElementById('butReload').addEventListener("click", function(e) {
          e.prompt();
       });
       
       document.getElementById('butReload').hidden = false; // Make button operable
-      return false;
+      //return false;
    });   
 })();
